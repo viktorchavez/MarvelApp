@@ -1,0 +1,76 @@
+name: MarvelApp
+options:
+  createIntermediateGroups: true
+  bundleIdPrefix: "com.pak.MarvelApp"
+  deploymentTarget:
+    iOS: "14.0"
+targets:
+  Data:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Data
+    settings:
+      PRODUCT_NAME: "Data"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pak.MarvelApp.data"
+    dependencies:
+      - target: Domain
+        embed: false
+      - package: Moya
+  DataTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: DataTests
+    dependencies:
+      - target: Data
+    settings:
+      PRODUCT_NAME: "DataTests"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pak.MarvelApp.dataTest"
+  Domain:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Domain
+    settings:
+       PRODUCT_NAME: "Domain"
+       PRODUCT_BUNDLE_IDENTIFIER: "com.pak.MarvelApp.domain"
+  DomainTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: DomainTests
+    dependencies:
+      - target: Domain
+    settings:
+      PRODUCT_NAME: "DomainTests"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pak.MarvelApp.domainTest"
+  MarvelApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+    dependencies:
+      - target: Domain
+      - target: Data
+      - package: SDWebImage
+      - package: SkeletonView
+      - package: Resolver
+  MarvelApp-iOS-Tests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: MarvelApp
+packages:
+  Moya:
+    from: "14.0.0"
+    url: "https://github.com/Moya/Moya"
+  SDWebImage:
+    from: "5.1.0"
+    url: "https://github.com/SDWebImage/SDWebImage.git"
+  SkeletonView:
+    from: "1.7.0"
+    url: "https://github.com/Juanpe/SkeletonView.git"
+  Resolver:
+    from: "1.1.2"
+    url: "https://github.com/hmlongco/Resolver.git"

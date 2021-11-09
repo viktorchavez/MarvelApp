@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  MarvelApp
+
+  Created by Viktor on 09/11/21.
+  
+*/
+
+"ok" = "Ok";
+"error" = "Error";
+
+"characters_list.title" = "Marvel Characters";
+"characters_list.search_placeholder" = "Search characters by name";
